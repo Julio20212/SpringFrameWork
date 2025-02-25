@@ -1,0 +1,31 @@
+package com.festas.services;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.festas.entidade.Tema;
+import com.festas.repository.TemaRepository;
+
+@Service
+public class TemaServices {
+	private final TemaRepository temaRepository;
+	
+	@Autowired
+	   public TemaServices(TemaRepository temaRepository) {
+        this.temaRepository = temaRepository;
+    }
+	public Tema saveTema (Tema tema) {
+		return temaRepository.save(tema);
+	}
+	public Tema getTemaById (Long id) {
+		return temaRepository.findById(id).orElse(null);
+	}
+	public List<Tema> getAllTema() {
+		return temaRepository.findAll();
+	}
+	 public void deleteTema(Long id) {
+	        temaRepository.deleteById(id);
+	    }
+}
