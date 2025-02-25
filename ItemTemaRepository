@@ -1,0 +1,11 @@
+package com.festas.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.festas.entidade.ItemTema;
+
+public interface ItemTemaRepository extends JpaRepository <ItemTema, Long> { 
+
+}
+
+
