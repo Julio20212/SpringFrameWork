@@ -1,0 +1,49 @@
+package com.festas.controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.festas.entidade.ItemTema;
+import com.festas.services.ItemTemaServices;
+
+@RestController
+@RequestMapping("/itemtema")
+
+public class ItemTemaController {
+
+	private final ItemTemaServices itemtemaServices;
+
+	
+    @Autowired 
+    public ItemTemaController(ItemTemaServices itemtemaServices) {
+        this.itemtemaServices = itemtemaServices;
+    }
+
+    @PostMapping
+    public ItemTema createItemTema(@RequestBody ItemTema itemtema) {
+        return itemtemaServices.saveItemTema(itemtema);
+    }
+
+    @GetMapping("/{id}")
+    public ItemTema getItemTemaById(@PathVariable Long id) {
+        return itemtemaServices.getItemTemaById(id);
+    }
+
+    @GetMapping
+    public List<ItemTema> getAllItemTema() {
+        return itemtemaServices.getAllItemTema();
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteItemTema(@PathVariable Long id) {
+    	itemtemaServices.deleteItemTema(id);
+    }
+}
